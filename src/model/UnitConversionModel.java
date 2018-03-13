@@ -16,6 +16,9 @@ public class UnitConversionModel {
 		this.unit1 = unit1;
 		this.unit2 = unit2;
 		
+		System.out.println(unit1Value);
+		convertUnit();
+		
 	}
 
 	public String getUnitType() {
@@ -56,6 +59,31 @@ public class UnitConversionModel {
 
 	public void setUnit2(String unit2) {
 		this.unit2 = unit2;
+	}
+	
+	public void convertUnit() {
+		switch(unitType) {
+			case "Length": 
+				convertLengthUnit();
+				break;
+			case "Mass":
+				convertMassUnit();
+				break;
+			case "Temperature":
+				convertTemperatureUnit();
+		}
+	}
+	
+	public void convertLengthUnit() {
+		
+	}
+	
+	public void convertMassUnit() {
+		
+	}
+	
+	public void convertTemperatureUnit() {
+		
 	}
 	
 }

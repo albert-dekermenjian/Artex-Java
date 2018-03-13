@@ -15,11 +15,10 @@ public class UnitConversionController {
 	
 	// GUI components
 	private ChoiceBox unitTypeChoiceBox;
-	private TextField unit1ValueTextField;
-	private TextField unit2ValueTextField;
+	private TextField unitValueToConvertTextField;
+	private Label unitValueConvertedLabel;
 	private ChoiceBox unit1ChoiceBox;
 	private ChoiceBox unit2ChoiceBox;
-	private Label equalLabel;
 	private Button convertUnitButton;
 	
 	
@@ -31,15 +30,14 @@ public class UnitConversionController {
 	private String unit1;
 	private String unit2;
 
-	public UnitConversionController(ChoiceBox unitTypeChoiceBox, TextField unit1ValueTextField, TextField unit2ValueTextField, ChoiceBox unit1ChoiceBox,
-			ChoiceBox unit2ChoiceBox, Label equalLabel, Button convertUnitButton) {
+	public UnitConversionController(ChoiceBox unitTypeChoiceBox, TextField unitValueToConvertTextField, Label unitValueConvertedLabel, ChoiceBox unit1ChoiceBox,
+			ChoiceBox unit2ChoiceBox, Button convertUnitButton) {
 		
 		this.unitTypeChoiceBox = unitTypeChoiceBox;
-		this.unit1ValueTextField = unit1ValueTextField;
-		this.unit2ValueTextField = unit2ValueTextField;
+		this.unitValueToConvertTextField = unitValueToConvertTextField;
+		this.unitValueConvertedLabel = unitValueConvertedLabel;
 		this.unit1ChoiceBox = unit1ChoiceBox;
 		this.unit2ChoiceBox = unit2ChoiceBox;
-		this.equalLabel = equalLabel;
 		this.convertUnitButton = convertUnitButton;
 		
 		setUnitType();
@@ -73,17 +71,14 @@ public class UnitConversionController {
 		convertUnitButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				getUnit1Value();
-				getUnit2Value();
 				new UnitConversionModel(unitType, unit1Value, unit2Value, unit1, unit2);
 			}
 		}));
 	}
 	
 	public void getUnit1Value() {
-		unit1Value = Double.valueOf(unit1ValueTextField.getText()).doubleValue();
+		unit1Value = Double.valueOf(unitValueToConvertTextField.getText()).doubleValue();
 	}
 	
-	public void getUnit2Value() {
-		unit2Value = Double.valueOf(unit2ValueTextField.getText()).doubleValue();
-	}
+
 }

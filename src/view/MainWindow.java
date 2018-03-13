@@ -92,8 +92,8 @@ public class MainWindow extends Application {
     	GridPane unitConversionContent = new GridPane();
     	
 		ChoiceBox unitType = new ChoiceBox();
-		TextField unit1 = new TextField();
-		TextField unit2 = new TextField();
+		TextField unitValueToConvertTextField = new TextField();
+		Label unitValueConvertedLabel = new Label();
 		ChoiceBox unit1ChoiceBox = new ChoiceBox();
 		ChoiceBox unit2ChoiceBox = new ChoiceBox();
 		Label equalLabel = new Label(" = ");
@@ -103,18 +103,18 @@ public class MainWindow extends Application {
 		
 		
 		unitConversionContent.setConstraints(unitType, 0, 0, 3, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
-		unitConversionContent.setConstraints(unit1, 0, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
+		unitConversionContent.setConstraints(unitValueToConvertTextField, 0, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
 		unitConversionContent.setConstraints(equalLabel, 1, 1);
-		unitConversionContent.setConstraints(unit2, 2, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
+		unitConversionContent.setConstraints(unitValueConvertedLabel, 2, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
 		unitConversionContent.setConstraints(unit1ChoiceBox, 0, 2, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
 		unitConversionContent.setConstraints(unit2ChoiceBox, 2, 2, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
 		unitConversionContent.setConstraints(convertUnitButton, 1, 3, 3, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
 		
-		unitConversionContent.getChildren().addAll(unitType, unit1, equalLabel, unit2, unit1ChoiceBox, unit2ChoiceBox, convertUnitButton);
+		unitConversionContent.getChildren().addAll(unitType, unitValueToConvertTextField, equalLabel, unitValueConvertedLabel, unit1ChoiceBox, unit2ChoiceBox, convertUnitButton);
 		
 		this.unitConversionTab.setContent(unitConversionContent);
 		
-		new UnitConversionController(unitType, unit1, unit2, unit1ChoiceBox, unit2ChoiceBox, equalLabel, convertUnitButton);
+		new UnitConversionController(unitType, unitValueToConvertTextField, unitValueConvertedLabel, unit1ChoiceBox, unit2ChoiceBox, convertUnitButton);
     }
 
 	public void setBorderPaneLayout() {
