@@ -25,60 +25,154 @@ public class UnitConversionController {
 	// data fields
 	
 	private String unitType;
-	private double unit1Value;
-	private double unit2Value;
-	private String unit1;
-	private String unit2;
+	private double unitValueToConvert;
+	private double unitValueConverted;
+	private String unitToConvert;
+	private String unitConverted;
 
 	public UnitConversionController(ChoiceBox unitTypeChoiceBox, TextField unitValueToConvertTextField, Label unitValueConvertedLabel, ChoiceBox unit1ChoiceBox,
 			ChoiceBox unit2ChoiceBox, Button convertUnitButton) {
 		
 		this.unitTypeChoiceBox = unitTypeChoiceBox;
 		this.unitValueToConvertTextField = unitValueToConvertTextField;
-		this.unitValueConvertedLabel = unitValueConvertedLabel;
+		this.unitValueConvertedLabel = unitValueConvertedLabel;	
 		this.unit1ChoiceBox = unit1ChoiceBox;
 		this.unit2ChoiceBox = unit2ChoiceBox;
 		this.convertUnitButton = convertUnitButton;
 		
-		setUnitType();
-		setUnit1ChoiceBox();
-		setUnit2ChoiceBox();
+		initializeUnitType();
+		initializeUnit1ChoiceBox();
+		initializeUnit2ChoiceBox();
 
 		
 		convertUnitButtonActivator();
+		
 	} 
 	
+	
+	
 
-	public void setUnitType() {
+
+	public void initializeUnitType() {
 	//	unitType.getSelectionModel().selectedIndexProperty();
 		unitTypeChoiceBox.getSelectionModel().select(0);
 		unitType = "Length";
 	}
 	
-	public void setUnit1ChoiceBox() {
+	public void initializeUnit1ChoiceBox() {
 		unit1ChoiceBox.getItems().addAll("METER", "KILOMETER", "INCH", "FEET");
 		unit1ChoiceBox.getSelectionModel().select(0);
-		unit1 = "METER";
+		unitToConvert = "METER";
 	}
 	
-	public void setUnit2ChoiceBox() {
+	public void initializeUnit2ChoiceBox() {
 		unit2ChoiceBox.getItems().addAll("METER", "KILOMETER", "INCH", "FEET");
 		unit2ChoiceBox.getSelectionModel().select(1);
-		unit2 = "KILOMETER";
+		unitConverted = "KILOMETER";
 	}
 	
 	public void convertUnitButtonActivator() {
 		convertUnitButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				getUnit1Value();
-				new UnitConversionModel(unitType, unit1Value, unit2Value, unit1, unit2);
+				obtainUnit1Value();
+				new UnitConversionModel(UnitConversionController.this);
 			}
 		}));
 	}
 	
-	public void getUnit1Value() {
-		unit1Value = Double.valueOf(unitValueToConvertTextField.getText()).doubleValue();
+	public void obtainUnit1Value() {
+		unitValueToConvert = Double.valueOf(unitValueToConvertTextField.getText()).doubleValue();
 	}
 	
 
+	public void displayConvertedUnit() {
+		
+
+		String unitValueDislayFormat = Double.toString(unitValueConverted);
+//		System.out.println(unitValueDislayFormat);
+		unitValueConvertedLabel.setText(unitValueDislayFormat);
+	}
+
+
+
+
+
+	public String getUnitType() {
+		return unitType;
+	}
+
+
+
+
+
+	public void setUnitType(String unitType) {
+		this.unitType = unitType;
+	}
+
+
+
+
+
+	public double getUnitValueToConvert() {
+		return unitValueToConvert;
+	}
+
+
+
+
+
+	public void setUnitValueToConvert(double unitValueToConvert) {
+		this.unitValueToConvert = unitValueToConvert;
+	}
+
+
+
+
+
+	public double getUnitValueConverted() {
+		return unitValueConverted;
+	}
+
+
+
+
+
+	public void setUnitValueConverted(double unitValueConverted) {
+		this.unitValueConverted = unitValueConverted;
+	}
+
+
+
+
+
+	public String getUnitToConvert() {
+		return unitToConvert;
+	}
+
+
+
+
+
+	public void setUnitToConvert(String unitToConvert) {
+		this.unitToConvert = unitToConvert;
+	}
+
+
+
+
+
+	public String getUnitConverted() {
+		return unitConverted;
+	}
+
+
+
+
+
+	public void setUnitConverted(String unitConverted) {
+		this.unitConverted = unitConverted;
+	}
+	
+
+	
 }
