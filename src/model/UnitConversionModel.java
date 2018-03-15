@@ -5,67 +5,23 @@ import controller.UnitConversionController;
 public class UnitConversionModel {
 	
 	
-	private UnitConversionController controller;
-	
 	private String unitType;
-	private double unit1Value;
-	private double unit2Value;
-	private String unit1;
-	private String unit2;
+	private double unitValueToConvert;
+	private double unitValueConverted;
+	private String unitToConvert;
+	private String unitConverted;
 	
-	public UnitConversionModel(UnitConversionController controller) {
+	public UnitConversionModel(String unitType, String unitToConvert, String unitConverted, double unitValueToConvert) {
 		
-		this.controller = controller;
 		
-		this.unitType = controller.getUnitType();
-		this.unit1Value = controller.getUnitValueToConvert();
-		this.unit2Value = controller.getUnitValueConverted();
-		this.unit1 = controller.getUnitToConvert();
-		this.unit2 = controller.getUnitConverted();
 		
-		System.out.println(unit1Value);
+		this.unitType = unitType;
+		this.unitToConvert = unitToConvert;
+		this.unitConverted = unitConverted;
+		this.unitValueToConvert = unitValueToConvert;
+		
 		convertUnit();
 		
-	}
-
-	public String getUnitType() {
-		return unitType;
-	}
-
-	public void setUnitType(String unitType) {
-		this.unitType = unitType;
-	}
-
-	public double getUnit1Value() {
-		return unit1Value;
-	}
-
-	public void setUnit1Value(double unit1Value) {
-		this.unit1Value = unit1Value;
-	}
-
-	public double getUnit2Value() {
-		return unit2Value;
-	}
-
-	public void setUnit2Value(double unit2Value) {
-		this.unit2Value = unit2Value;
-	}
-
-	public String getUnit1() {
-		return unit1;
-	}
-
-	public void setUnit1(String unit1) {
-		this.unit1 = unit1;
-	}
-
-	public String getUnit2() {
-		return unit2;
-	}
-
-	public void setUnit2(String unit2) {
-		this.unit2 = unit2;
 	}
 	
 	public void convertUnit() {
@@ -82,7 +38,7 @@ public class UnitConversionModel {
 	}
 	
 	public void convertLengthUnit() {
-		switch (unit1) {
+		switch (unitToConvert) {
 			case "METER":
 				convertMeter();
 				break;
@@ -104,14 +60,11 @@ public class UnitConversionModel {
 	}
 	
 	public void convertMeter() {
-		switch (unit2) {
+		switch (unitConverted) {
 			case "METER":
 				break;
 			case "KILOMETER":
-				unit2Value = unit1Value / 1000;
-				System.out.println("hey: " + unit2Value);
-				controller.setUnitValueConverted(unit2Value);
-				controller.displayConvertedUnit();
+				unitValueConverted = unitValueToConvert / 1000;
 				break;
 			case "INCH":
 				break;
@@ -119,5 +72,48 @@ public class UnitConversionModel {
 				break;
 		}
 	}
+
+	public String getUnitType() {
+		return unitType;
+	}
+
+	public void setUnitType(String unitType) {
+		this.unitType = unitType;
+	}
+
+	public double getUnitValueToConvert() {
+		return unitValueToConvert;
+	}
+
+	public void setUnitValueToConvert(double unitValueToConvert) {
+		this.unitValueToConvert = unitValueToConvert;
+	}
+
+	public double getUnitValueConverted() {
+		return unitValueConverted;
+	}
+
+	public void setUnitValueConverted(double unitValueConverted) {
+		this.unitValueConverted = unitValueConverted;
+	}
+
+	public String getUnitToConvert() {
+		return unitToConvert;
+	}
+
+	public void setUnitToConvert(String unitToConvert) {
+		this.unitToConvert = unitToConvert;
+	}
+
+	public String getUnitConverted() {
+		return unitConverted;
+	}
+
+	public void setUnitConverted(String unitConverted) {
+		this.unitConverted = unitConverted;
+	}
+	
+	
+	
 	
 }

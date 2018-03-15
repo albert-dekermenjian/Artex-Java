@@ -22,6 +22,10 @@ public class UnitConversionController {
 	private Button convertUnitButton;
 	
 	
+	
+	private UnitConversionModel model;
+	
+	
 	// data fields
 	
 	private String unitType;
@@ -54,7 +58,6 @@ public class UnitConversionController {
 
 
 	public void initializeUnitType() {
-	//	unitType.getSelectionModel().selectedIndexProperty();
 		unitTypeChoiceBox.getSelectionModel().select(0);
 		unitType = "Length";
 	}
@@ -75,7 +78,8 @@ public class UnitConversionController {
 		convertUnitButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				obtainUnit1Value();
-				new UnitConversionModel(UnitConversionController.this);
+				model = new UnitConversionModel(unitType, unitToConvert, unitConverted, unitValueToConvert);
+				displayConvertedUnit();
 			}
 		}));
 	}
@@ -86,10 +90,7 @@ public class UnitConversionController {
 	
 
 	public void displayConvertedUnit() {
-		
-
-		String unitValueDislayFormat = Double.toString(unitValueConverted);
-//		System.out.println(unitValueDislayFormat);
+		String unitValueDislayFormat = Double.toString(model.getUnitValueConverted());
 		unitValueConvertedLabel.setText(unitValueDislayFormat);
 	}
 
