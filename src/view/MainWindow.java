@@ -1,5 +1,6 @@
 package view;
 
+import controller.TimeZonesConversionController;
 import controller.UnitConversionController;
 import javafx.application.*;
 import javafx.geometry.HPos;
@@ -26,6 +27,7 @@ public class MainWindow extends Application {
     private MenuBar menuBar;
     private TabPane tabPane;
     private Tab unitConversionTab;
+    private Tab timeZonesConverterTab;
     private BorderPane borderPane;
 	
 	@Override
@@ -38,6 +40,8 @@ public class MainWindow extends Application {
 		setBorderPaneCenterPosition();
 
 		setUnitConversionTabContent();
+		
+		setTimeZonesConverterTab();
 		
 		setBorderPaneLayout();
 
@@ -80,9 +84,9 @@ public class MainWindow extends Application {
 		this.unitConversionTab.setText("Unit Conversion");
 		Tab webDataApplicationTab = new Tab();
 		webDataApplicationTab.setText("Web data importer");
-		Tab timeZonesApplicationTab = new Tab();
-		timeZonesApplicationTab.setText("Time zones");
-		this.tabPane.getTabs().addAll(unitConversionTab, webDataApplicationTab, timeZonesApplicationTab);
+		this.timeZonesConverterTab = new Tab();
+		this.timeZonesConverterTab.setText("Time zones");
+		this.tabPane.getTabs().addAll(unitConversionTab, webDataApplicationTab, timeZonesConverterTab);
 		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 
     }
@@ -115,6 +119,33 @@ public class MainWindow extends Application {
 		this.unitConversionTab.setContent(unitConversionContent);
 		
 		new UnitConversionController(unitType, unitValueToConvertTextField, unitValueConvertedLabel, unit1ChoiceBox, unit2ChoiceBox, convertUnitButton);
+    }
+    
+    public void setTimeZonesConverterTab() {
+    	GridPane timeZonesContent = new GridPane();
+    	
+    	ChoiceBox cityToConvert = new ChoiceBox();
+    	Label cityTimeToConvert = new Label();
+    	
+    	ChoiceBox cityConverted = new ChoiceBox();
+    	Label cityTimeConverted = new Label();
+    	
+    	Button findTime = new Button("Find time");
+    	
+    	cityToConvert.getItems().addAll("Yerevan", "Montreal", "Moscow", "Aleppo");
+    	cityConverted.getItems().addAll("Yerevan", "Montreal", "Moscow", "Aleppo");
+    	
+    	timeZonesContent.setConstraints(cityToConvert, 0, 0, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
+    	timeZonesContent.setConstraints(cityTimeToConvert, 0, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
+    	timeZonesContent.setConstraints(cityConverted, 1, 0, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
+    	timeZonesContent.setConstraints(cityTimeConverted, 1, 1, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
+    	timeZonesContent.setConstraints(findTime, 0, 2, 1, 1, HPos.CENTER, VPos.CENTER, Priority.ALWAYS, Priority.NEVER);
+    	
+    	timeZonesContent.getChildren().addAll(cityToConvert, cityTimeToConvert, cityConverted, cityTimeConverted, findTime);
+    	
+    	this.timeZonesConverterTab.setContent(timeZonesContent);
+    	
+    	new TimeZonesConversionController(cityToConvert, cityTimeToConvert, cityConverted, cityTimeConverted, findTime);
     }
 
 	public void setBorderPaneLayout() {
